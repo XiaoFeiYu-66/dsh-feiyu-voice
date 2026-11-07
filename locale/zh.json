@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "小肥鱼语音",
+    "description": "用本机 MOSS-TTS-Nano 与自备参考音色合成语音，可把回复直接发成 QQ 语音条。"
+  }
+}

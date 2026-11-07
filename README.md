@@ -1,9 +1,8 @@
 # dsh-feiyu-voice
-本插件由AI生成，使用 MOSS-TTS-Nano模型克隆语音，本地低成本实现纯cpu文本转语音的DSH插件，支持对接官方qqbot。
 
-给 DeepSeek Harness（DSH）用的本地语音插件：使用 [MOSS-TTS-Nano](https://github.com/OpenMOSS/MOSS-TTS-Nano)（0.1B、ONNX、**纯 CPU** 可跑）加**你自己的参考音色**合成语音，并可通过 `dsh-qqbot` 直接发成 **QQ 语音**，解决低配电脑或云服务养鱼发语音问题。
+给 DeepSeek Harness（DSH）用的本地语音插件：用 [MOSS-TTS-Nano](https://github.com/OpenMOSS/MOSS-TTS-Nano)（0.1B、ONNX、**纯 CPU** 可跑）加**你自己的参考音色**合成语音，并可通过 `dsh-qqbot` 直接发成 **QQ 语音条**。
 
-本包**不包含**：模型权重、Python 环境、任何音色文件。这些都需要你自己或者AI在 `ttsHome` 目录中准备。
+本包**不包含**：模型权重、Python 环境、任何音色文件、任何账号凭据。这些都在你自己的 `ttsHome` 目录里准备。
 
 ---
 
@@ -12,7 +11,7 @@
 | 能力 | 入口 |
 |---|---|
 | 合成一段语音到本地 wav | 工具 `feiyu_speak(text, ref?)` |
-| 合成并发成 QQ 语音 | 工具 `feiyu_send_voice(text, ref?, target?)` |
+| 合成并发成 QQ 语音条 | 工具 `feiyu_send_voice(text, ref?, target?)` |
 | 查看服务/音色/路径状态 | 工具 `feiyu_voice_status()` |
 | 可视化配置与试听 | **设置 → 小肥鱼语音**（选音色、填 TTS 目录、启停常驻服务、试听） |
 
@@ -25,14 +24,12 @@
 | 项 | 要求 |
 |---|---|
 | DSH | 桌面版或 `dsh web`（Node 由 DSH 自带，无需另装） |
-| Python | **3.11 / 3.12 推荐**（3.10–3.13 可用；3.14+ 可能缺少部分依赖，需自行尝试） |
+| Python | **3.11 / 3.12 推荐**（3.10–3.13 可用；3.14+ 部分依赖还没有轮子） |
 | 磁盘 | 约 2–3 GB（模型 ≈1 GB + torch/onnxruntime ≈1.5 GB） |
-| 内存 | 常驻服务约占 **2–3 GB**|
-| 显卡 | **不需要**，CPU 即可（有 NVIDIA 也可，但本插件默认 CPU，如需使用显卡可以参考MOSS-TTS-Nano官方文档） |
+| 内存 | 常驻服务约占 **2–3 GB**；8 GB 机器建议不用时关掉 |
+| 显卡 | **不需要**，CPU 即可（有 NVIDIA 也可，但本插件默认 CPU） |
 | 音色 | 一段 5–15 秒的干净人声 wav（推荐 24 kHz 单声道） |
 | QQ 语音（可选） | 已安装 `@tencent-connect/dsh-qqbot` 并配置好机器人 `appId` / `appSecret` |
-
-实验机环境为win10，验证可用。
 
 ---
 
@@ -197,7 +194,7 @@ feiyu_send_voice(text, ref?, target?, group?, content?, msgId?)
 检查 `im-qqbot` 凭据、白名单里有没有你的 openid、是否触发了 QQ 主动消息额度（可以让 agent 传 `msgId` 走被动回复）。
 
 **Q：能改音色吗？**
-把新的 wav 文件放进 `refs/`，刷新设置页即可在下拉里看到；也可以直接传绝对路径。
+把新的 wav 放进 `refs/`，刷新设置页即可在下拉里看到；也可以直接传绝对路径。
 
 ---
 

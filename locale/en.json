@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Feiyu Voice",
+    "description": "Synthesizes speech locally with MOSS-TTS-Nano and your own reference voice, and can send it as a QQ voice message."
+  }
+}

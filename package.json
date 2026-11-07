@@ -1,0 +1,34 @@
+{
+  "name": "dsh-feiyu-voice",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "小肥鱼语音：用本机 MOSS-TTS-Nano（ONNX CPU）+ 自备参考音色合成语音，可发 QQ 语音条",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "scripts",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": ["slots"]
+    }
+  }
+}
